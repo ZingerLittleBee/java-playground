@@ -1,7 +1,7 @@
 package com.beeij.reflect;
 
 /**
- * 描述
+ * ReflectTarget
  *
  * @author ye
  * @version 1.0.0, 2021-07-10
