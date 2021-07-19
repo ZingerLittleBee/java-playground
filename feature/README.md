@@ -31,3 +31,50 @@
 - 任何数据类型（包括基础数据类型）都有一个"静态"的 class 属性 --> 需要导入类包
 - 通过 Class 类的静态方法: `forName(String className)`(最常用) --> 可以通过配置文件来动态的创建类
 > 在运行期间, 一个类, 只有一个与之相对应的 Class 对象产生
+
+### 反射的主要用法
+- 获取类的构造方法并使用
+- 获取类的成员变量并使用
+- 获取类的成员方法并使用
+
+#### 获取构造方法
+1. 批量的方法
+    1). `public Constructor[] getConstructors()`: 所有"公有的"构造函数
+    2). `public Constructor[] getDeclaredConstructors()`: 获取所有的构造函数方法(包括私有、受保护、默认、公有)
+2. 获取单个的方法, 并调用
+    1). `public Constructor getConstructor(Class...parameterTypes)`: 获取单个的"公有的"构造方法
+    2). `public Constructor getDeclaredConstructor(Class...parameterTypes)`: 获取"某个构造方法"可以是私有的、受保护、默认、公有
+   
+
+    调用构造方法:
+    `Constructor --> newInstance(Object...initargs)`
+   
+#### 获取成员变量并调用
+1. 批量
+    1). `Field[] getFields()`: 获取所有的"公有字段"
+    2). `Field[] getDeclaredFields()`: 获取所有字段, 包括: 私有、受保护、默认、公有
+2. 获取单个
+    1). `public Field getField(String fieldName)`: 获取某个"公有的"字段
+    2). `public Field getDeclaredField(String fieldName)`: 获取某个字段(可以是私有)
+   
+
+    设置字段的值:
+    `Field --> public void set(Object obj, Object value)`
+        参数说明:
+            1. obj: 要设置的字段所在的对象
+            2. value: 要为字段设置的值
+
+#### 获取成员方法并调用
+1. 批量
+   1). `Method[] getMethods()`: 获取所有的"公有方法"
+   2). `Method[] getDeclaredMethods()`: 获取所有方法, 包括: 私有、受保护、默认、公有
+2. 获取单个
+   1). `public Method getMethod(String methodName)`: 获取某个"公有的"方法
+   2). `public Method getDeclaredMethod(String methodName)`: 获取某个方法(可以是私有)
+
+
+    方法调用:
+    `Method --> public Object invoke(Object obj, Object... args)`
+        参数说明:
+            1. obj: 要调用的方法所在的对象
+            2. args: 参数
